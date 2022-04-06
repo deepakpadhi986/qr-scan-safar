@@ -1,54 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR SCANNER | SAFAR</title>
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/deepakpadhi986/qr-gen-safar/main/content/css/bootswatch.css">
-</head>
-
-<body>
-    <div id="qr-reader" style="width:500px"></div>
-    <div id="qr-reader-results"></div><br><br>
-    <label>Scanned Result</label><br><br>
-    <textarea id="dcode" rows="8" cols="60" readonly contenteditable="false" translate="yes"></textarea><br><br>
-    <small>© QR SCANNER SAFAR Built Using <a href="https://github.com/mebjas/html5-qrcode">html5-qrcode</a></small>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://unpkg.com/html5-qrcode"></script>
-    <script>
-        function docReady(fn) {
-            // see if DOM is already available
-            if (document.readyState === "complete"
-                || document.readyState === "interactive") {
-                // call on next available tick
-                setTimeout(fn, 1);
-            } else {
-                document.addEventListener("DOMContentLoaded", fn);
-            }
-        }
-
-        docReady(function () {
-            var resultContainer = document.getElementById('qr-reader-results');
-            var lastResult, countResults = 0;
-            function onScanSuccess(decodedText, decodedResult) {
-                if (decodedText !== lastResult) {
-                    ++countResults;
-                    lastResult = decodedText;
-                    // Handle on success condition with the decoded message.
-                    console.log(`Scan result ${decodedText}`, decodedResult);
-                    $('#dcode').val(decodedText);
-                }
-            }
-
-            var html5QrcodeScanner = new Html5QrcodeScanner(
-                "qr-reader", { fps: 10, qrbox: 250 });
-            html5QrcodeScanner.render(onScanSuccess);
-        });
-    </script>
-
-</body>
-
+    <head>
+        <!-- Primary Meta Tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>QR Scanner | Safar</title>
+        <meta name="title" content="QR Scanner | Safar">
+        <meta name="description" content="A QR Code Scanner made using htm5qrcode. Take a Look at it's QR Generator for having multiple values in a QR. This is only for live testing purpose.">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://qr-scan-safar.netlify.app">
+        <meta property="og:title" content="QR Generator | Safar">
+        <meta property="og:description" content="A QR Code Scanner made using htm5qrcode. Take a Look at it's QR Generator for having multiple values in a QR. This is only for live testing purpose.">
+        <meta property="og:image" content="https://raw.githubusercontent.com/deepakpadhi986/qr-scan-safar/main/content/meta.png">
+        <meta property="og:image:width" content="1300"/>
+        <meta property="og:image:height" content="630"/>
+        <meta property="og:image:type" content="image/png"/>
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://qr-scan-safar.netlify.app">
+        <meta property="twitter:title" content="QR Generator | Safar">
+        <meta property="twitter:description" content="A Custom QR generator for my upcoming project. A multiple value qr generator. This is only for live testing purpose.">
+        <meta property="og:image" content="https://raw.githubusercontent.com/deepakpadhi986/qr-scan-safar/main/content/meta.png">
+        <meta property="og:image:width" content="1300"/>
+        <meta property="og:image:height" content="630"/>
+        <meta property="og:image:type" content="image/png"/>    
+        <!-- favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="content/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="content/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="content/favicon/favicon-16x16.png">
+        <link rel="manifest" href="content/favicon/site.webmanifest">
+        <!-- bootswatch -->
+        <link rel="stylesheet" href="content/css/bootswatch.css">
+        <!-- custom css -->
+        <link rel="stylesheet" href="content/css/style.css">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPSDWS46K1"></script>
+        <script src="content/script/gtag.js"></script>
+        <!--  Microsoft clarity    -->
+        <script src="content/script/msc.js"></script>
+    </head>
+    <body>
+        <!-- title -->
+        <h3 class="text-danger">SAFAR QR SCANNER : )</h3>
+        <!-- info -->
+        <p class="text-info info">Also Try a linked project for this <a class="text-info" href="https://qr-gen-safar.netlify.app">QR Generator</a></p>
+        <!-- reader -->
+        <div id="qr-reader" class="col-md-5"></div>
+        <!-- errors -->
+        <div id="qr-reader-results" class="text-danger"></div>
+        <!-- scanned result -->
+        <div class="form-group scan">
+            <!-- label -->
+            <label for="dcode" class="from-label mt-4 text-success">Scanned Result</label>
+            <!-- result textarea -->
+            <div class="col-md-4">
+                <textarea id="dcode" class="form-control" rows="6" cols="40" readonly contenteditable="false" translate="yes"></textarea>
+            </div><br>
+            <!-- copy to clipboard -->
+            <input type="button" class="btn btn-outline-info" value="Copy to Clipboard" onclick="myFunction()">
+        </div>
+        <!--Used Tools-->
+        <div class="toast-header" id="terms">
+            <strong class="me-auto">Used Tools</strong>
+            <small>Test : )</small>
+        </div>
+        <div class="toast-body">
+            <ul>
+                <li>Also Try Multiple Values <a href="https://qr-gen-safar.netlify.app">QR Generator : )</a></li>
+                <li><a href="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">JQuery</a></li>
+                <li><a href="https://github.com/mebjas/html5-qrcode">html5-qrcode</a></li>
+                <li><a href="https://bootswatch.com/lumen/">Bootswatch Lumen</a></li>
+            </ul>
+        </div>
+        <hr>
+        <!-- footer/copyright -->
+        <p class="text-secondary foot">© QR SCANNER SAFAR Built Using <a href="https://github.com/mebjas/html5-qrcode">html5-qrcode</a></p>
+        <!-- jquery cdn -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <!-- unpkg html5qrcode cdn -->
+        <script src="https://unpkg.com/html5-qrcode"></script>
+        <!-- custom script -->
+        <script src="content/script/script.js"></script>    
+    </body>
 </html>

@@ -1,0 +1,20 @@
+body {
+  margin-left: 12px;
+  margin-top: 12px;
+}
+.scan{
+  margin-top: 6px;
+}
+.foot{
+  margin-top:12px;
+  font-size: small;
+}
+label, h3{
+  font-weight: bold;
+}
+li{
+  color: gray;
+}
+li a{
+  text-decoration: none;
+}
